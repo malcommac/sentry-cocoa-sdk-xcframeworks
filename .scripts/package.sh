@@ -28,10 +28,6 @@ workingPath="$PWD"
 frameworkName="Sentry.xcframework"
 frameworkPath="$workingPath/$frameworkName"
 
-# the name of the branch created to host the new release
-# it will be removed automatically at the end of the release process
-branch="release/$remoteVersion"
-
 # START
 
 # Get the latest release on Sentry official repository
@@ -40,6 +36,10 @@ echo "Latest sentry-cocoa version available is ${remoteVersion}"
 # Get our latest mirrored release
 localVersion=$(latestReleaseInRepository $xcframeworks_repo)
 echo "Latest built xcframework version is ${localVersion}"
+
+# the name of the branch created to host the new release
+# it will be removed automatically at the end of the release process
+branch="release/$remoteVersion"
 
 if [[ $remoteVersion != $localVersion || debug ]]; then
     echo "$localVersion is out of date. Updating for Sentry SDK v$remoteVersion..."
