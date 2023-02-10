@@ -44,7 +44,7 @@ let package = Package(
         .target(
             name: "MyLibraryTarget",
             dependencies: [
-                .product(name: "Sentry", package: "Sentry")
+                .product(name: "Sentry", package: "sentry-cocoa-sdk-xcframeworks")
             ]
         )
     ]
