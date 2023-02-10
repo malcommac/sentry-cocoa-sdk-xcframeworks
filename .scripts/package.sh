@@ -71,6 +71,7 @@ if [[ $remoteVersion != $localVersion || debug ]]; then
         git push -u origin $branch # push branch on remote
     
         echo "  Creating new tag for $remoteVersion..."
+        git checkout $branch
         git tag $remoteVersion
         git push origin --tags
 
