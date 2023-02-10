@@ -67,10 +67,10 @@ if [[ $remoteVersion != $localVersion || debug ]]; then
         
         echo "  Committing changes to remote..."
         git add .
-        git commit -m"Updated Package.swift and sources for Sentry v.$remoteVersion"
+        git commit -m"Updated Package.swift and sources for Sentry v.$(remoteVersion)"
         
         echo "  Pushing to remote..."
-        git push -u origin $branch # push branch on remote
+        git push --set-upstream origin $branch # push branch on remote
     
         echo "  Creating new tag for $remoteVersion..."
         git checkout $branch
