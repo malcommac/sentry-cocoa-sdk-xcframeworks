@@ -16,7 +16,6 @@ withTemporaryDirectory() {
 
 # Configuration params
 debug=$(echo $@ || "" | grep debug) # open the directory on finder
-skip_release=$(echo $@ || "" | grep skip-release) # skip the creation of release
 
 # Git repositories to use
 sentry_repository="git@github.com:getsentry/sentry-cocoa.git"
@@ -75,18 +74,16 @@ if [[ $remoteVersion != $localVersion || debug ]]; then
         git tag $remoteVersion
         git push origin --tags
 
-         # Skips deploy
-        if [[ $skip_release ]]; then
-            echo "  Creating a new release..."
-            gh release create $remoteVersion --target $branch --notes "Updated SPM pre-built xcframework package for Sentry SDK v$remoteVersion"
-        else
-            echo "  Skipping creation of the release"
-        fi
+         # Deploy
+        echo "  Creating a new release..."
+        gh release create $remoteVersion --target $branch --notes "Updated SPM pre-built xcframework package for Sentry SDK v$remoteVersion"
 
-        echo "  Cleaning up..."
+        echo "  Final clean-up..."
         git checkout main
         git branch -d $branch
         git push origin --delete $branch
+        
+        echo "Published release $remoteVersion on this mirror"
     )
 else
     echo "Package is up-to-date."
