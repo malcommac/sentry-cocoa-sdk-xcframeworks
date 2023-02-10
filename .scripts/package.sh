@@ -19,8 +19,8 @@ debug=$(echo $@ || "" | grep debug) # open the directory on finder
 skip_release=$(echo $@ || "" | grep skip-release) # skip the creation of release
 
 # Git repositories to use
-sentry_repository="https://github.com/getsentry/sentry-cocoa"
-xcframeworks_repo="https://github.com/malcommac/sentry-cocoa-sdk-xcframeworks"
+sentry_repository="git@github.com:getsentry/sentry-cocoa.git"
+xcframeworks_repo="git@github.com:malcommac/sentry-cocoa-sdk-xcframeworks.git"
 
 workingPath="$PWD"
 
